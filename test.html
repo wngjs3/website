@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title></title>
+
+<script>
+
+
+
+window.onload = function () {
+
+var canvas = document.getElementById("myCanvas");
+
+var context = canvas.getContext("2d");
+
+//캔버스의 너비, 높이를 가져옵니다.(여기서는 너비 700, 높이 400)
+
+var canvasWidth = canvas.width; //캔버스의 너비
+
+var canvasHeight = canvas.height; //캔버스의 높이
+
+var radius = 100; //반지름
+
+
+
+//도형그리기(원을 그립니다.)
+
+context.beginPath();
+
+context.arc(canvasWidth / 2, canvasHeight / 2, radius, 0, 2 * Math.PI);
+
+//그라데이션 생성(캔버스전체에 생성)
+
+var grd = context.createLinearGradient(0, 0, canvasWidth, canvasHeight);
+
+grd.addColorStop(0.4, "red");
+
+grd.addColorStop(0.7, "yellow");
+
+//원에 그라데이션설정
+
+context.fillStyle = grd;
+
+context.fill();
+
+context.stroke();
+
+
+
+};
+
+
+
+</script>
+
+</head>
+
+<body>
+
+<canvas id="myCanvas" width="700" height="400">
+
+</canvas>
+
+</body>
+
+</html>

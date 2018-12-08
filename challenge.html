@@ -1,0 +1,439 @@
+<html>
+    <head>
+      <link rel="stylesheet" href="style1.css">
+      <script src="https://unpkg.com/scrollreveal"></script>
+      <script>
+        ScrollReveal({ reset: true });
+        ScrollReveal().reveal(target, options);
+      </script>
+<
+<title>Hello</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<style>
+html { height: 100%; font-family: sans-serif; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
+body { height: 100%; -webkit-font-smoothing: antialiased; font-smoothing: antialiased; -webkit-overflow-scrolling: touch; overflow-scrolling: touch; }
+
+#expandable {
+
+  text-align: center;
+  margin-top: 1000px;
+
+   font-family: 'Helvetica Neue', sans-serif;
+   font-size: 275px;
+   font-weight: bold;
+   letter-spacing: -1px;
+   line-height: 1;
+   color: 'white';
+
+
+}
+body {
+
+    /*background: linear-gradient(to bottom, #eee, rgba(222,112,6,0.2), #de7006);*/
+
+}
+/*p{
+  font-size: 100px;
+  text-align: center;
+  margin-top: 1000px;
+}*/
+#cover-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.video-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* 중앙 사진이나 비디오를 가운데로 고정하는 것 */
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;/*화면 꽉재우는것*/
+}
+
+#video-studiomeal {
+    transform: scale(1);
+
+}
+
+</style>
+
+</head>
+<body style="height:1500px;" >
+
+<div class="video-wrapper">
+   <!--
+   <img src="wallpaper.jpg" id="video-studiomeal" style="transform: scale(1);">
+ -->
+
+<canvas id="video-studiomeal" width=1000% height=1000%>
+</div>
+<canvas id="cover-canvas" width="1880" height="1508" style="width: 940px; height: 754px;"></canvas>
+
+
+<div id="expandable">Hello</div>
+
+<h1> </h1>
+<h1><div class="tagline" style="text-align:center">I'M</div></h1>
+<div  class="tagline" style="text-align:center"><h3>Mechanical<br>Engineer</h3></div>
+
+
+<div style="text-align:center"><div class="tagline"><img id='me' src="me1.png" width="300px" ></div></div>
+<div style="text-align:center"><div class="tagline"><img src="thomas.jpg" width=500px; style="margin-bottom:200px;" ></div></div>
+<h4><div class="tagline" style="text-align:center">How <div id='made'>It's Made</div></div></h4>
+<div style="text-align:center"><div class="tagline"><img src="down.png" width=500px; style="margin-top:50px; margin-bottom:200px;" ></div></div>
+
+
+<div style="text-align:center"><img src="idea.jpg" width="800px"style="margin-bottom:200px;" ></div>
+
+<div style="text-align:center">11/14 ~ 11/21 </div>
+<div style="text-align:center">Study <br>HTML 100% <br>CSS 30%</div>
+<div style="text-align:center"><img src="hello world.jpg" width="800px"style="margin-bottom:200px;" ></div>
+
+<div style="margin-bottom:200px;"></div>
+
+
+<div id="date"><div class="tagline" style="text-align:center">11/21 ~ 11/28</div></div>
+<div id="title"><div class="tagline" style="text-align:center">Study </div></div>
+<div id="title1"><div class="tagline" style="text-align:center">HTML 100%</div></div>
+<div id="title1"><div class="tagline" style="text-align:center">CSS 100% </div></div>
+<div id="title1"><div class="tagline" style="text-align:center">JavaScript 100%</div></div>
+
+<div style="text-align:center"><div class="tagline"><img src="java.jpg" width="800px"style="margin-bottom:200px;" ></div></div>
+<div id="date"><div class="tagline" style="text-align:center">11/28 ~ 12/12</div></div>
+<div id="title"><div class="tagline" style="text-align:center">Challenge</div></div>
+<div style="text-align:center"><div class="tagline"><img src="page1.jpg" width="800px"style="margin-bottom:200px;" ></div></div>
+<div style="text-align:center"><div class="tagline"><img src="page2.jpg" width="800px"style="margin-bottom:200px;" ></div></div>
+<div style="text-align:center"><div class="tagline"><img src="page3.jpg" width="800px"style="margin-bottom:200px;" ></div></div>
+
+<div style="text-align:center"><h3>Thank you<br>For watching</h3></div>
+
+
+
+<h1></h1>
+
+
+<script>
+
+
+'use strict';
+/*
+var Bcolor = 0;
+function hello(){
+
+  var Acolor = new Array('#'+(Math.random()*0xFFFFFF<<0).toString(16), '#'+(Math.random()*0xFFFFFF<<0).toString(16), '#'+(Math.random()*0xFFFFFF<<0).toString(16));
+	var Ccolor = Acolor[Bcolor++];
+	document.body.style.background=Ccolor;
+        if(Bcolor >= Acolor.length){
+                Bcolor = 0;
+        }
+        //document.write(window.innerHeight);
+
+
+        return 0;
+}
+setInterval(hello() ,200);
+*/
+
+(function () {
+
+    var elemCanvas,
+        elemVideo,
+        elemPhone,
+        context,
+        context1,
+        windowWidth = 0, // 브라우저 폭
+        windowHeight = 0, // 브라우저 높이
+        canvasWidth = 0, // 캔버스 폭(브라우저 폭에 맞춤)
+        canvasHeight = 0, // 캔버스 높이(브라우저 높이에 맞춤)
+        scrollY = 0, // 현재 스크롤 위치
+        relativeScrollY = 0, // 각 키프레임에서 사용하는 상대적인 스크롤 위치
+        prevDurations = 0, // 이전 키프레임까지의 duration
+        totalScrollHeight = 0, // 스크롤을 할 수 있는 전체 높이(body의 높이로 세팅)
+        currentKeyframe = 0, // 현재 키프레임(0, 1)
+        phoneWidth = 1380, // 아이폰 이미지 기본 크기
+        phoneHeight = 3000, // 아이폰 이미지 기본 크기
+
+        resizeHandler,
+        scrollHandler,
+        render,
+        drawCanvas,
+        calcAnimationValue,
+        calcFinalValue,
+        init,
+        pixelDuration = 0, // 키프레임 당 차지하는 스크롤 높이
+        keyframes = [
+            {
+                animationValues: {
+                    videoScale: [1, 2],
+                    triangleMove: [0, 200],
+                    rectangleMove: [0, 200]
+                }
+            },
+            {
+                animationValues: {
+                    videoScale: [2, 0.5],
+                    triangleMove: [200, 1500],
+                    rectangleMove: [200, 1500]
+                }
+            }
+        ],
+
+        elemBody = document.body,
+        elemCanvas = document.getElementById('cover-canvas'),
+        context = elemCanvas.getContext('2d');
+        context1 = elemCanvas.getContext('2d');
+        elemVideo = document.getElementById('video-studiomeal');
+
+
+
+
+    init = function () {
+
+
+        windowWidth = window.innerWidth;
+        windowHeight = window.innerHeight;
+
+        resizeHandler();
+        render();
+
+        window.addEventListener('resize', function () {
+            requestAnimationFrame(resizeHandler);
+        });
+        window.addEventListener('scroll', function () {
+            requestAnimationFrame(scrollHandler);
+        });
+
+        elemPhone = document.createElement('img');
+        elemPhone.src = 'phone.png';
+        elemPhone.addEventListener('load', function () {
+            drawCanvas();
+        });
+    };
+
+    resizeHandler = function () {
+        var i;
+        windowWidth = window.innerWidth;
+        windowHeight = window.innerHeight;
+        totalScrollHeight = 0;
+        pixelDuration = 0.5 * windowHeight;
+
+        for (i = 0; i < keyframes.length; i++) {
+            totalScrollHeight += pixelDuration;
+        }scroll(function(event) {
+          /* Act on the event */
+        });
+        totalScrollHeight += windowHeight;
+
+        elemBody.style.height = totalScrollHeight + 'px';
+        elemCanvas.width = canvasWidth = windowWidth * 2;
+        elemCanvas.height = canvasHeight = windowHeight * 2;
+        elemCanvas.style.width = windowWidth + 'px';
+        elemCanvas.style.height = windowHeight + 'px';
+
+
+    };
+
+    scrollHandler = function () {
+        scrollY = window.pageYOffset;
+
+        if(scrollY < 0 || scrollY > (totalScrollHeight - windowHeight)) {
+            return;
+        }
+
+        if (scrollY > pixelDuration + prevDurations) {
+            prevDurations += pixelDuration;
+            currentKeyframe++;
+        } else if (scrollY < prevDurations) {
+            currentKeyframe--;
+            prevDurations -= pixelDuration;
+        }
+
+        relativeScrollY = scrollY - prevDurations;
+
+        render();
+    };
+
+    render = function () {
+        var videoScale, triangleMove, rectangleMove;
+
+        if (keyframes[currentKeyframe]) {
+            videoScale = calcAnimationValue(keyframes[currentKeyframe].animationValues.videoScale);
+            triangleMove = calcAnimationValue(keyframes[currentKeyframe].animationValues.triangleMove);
+            rectangleMove = calcAnimationValue(keyframes[currentKeyframe].animationValues.rectangleMove);
+        } else {
+            return;
+        }
+
+        //elemVideo.style.transform = 'scale(' + videoScale + ')';
+
+
+        context.clearRect(0, 0, canvasWidth, canvasHeight);
+        if (elemPhone) {
+            drawCanvas(videoScale, triangleMove, rectangleMove);
+        }
+    };
+
+    calcAnimationValue = function (values) {
+        return (relativeScrollY / pixelDuration) * (values[1] - values[0]) + values[0];
+    };
+
+    drawCanvas = function (videoScale, triangleMove, rectangleMove) {
+        var videoScale = videoScale || 1,
+            triangleMove = triangleMove || 0,
+            rectangleMove = rectangleMove || 0;
+
+        context.save();
+        context.translate( (canvasWidth - phoneWidth * videoScale) * 0.5, (canvasHeight - phoneHeight * videoScale) * 0.5 );
+        context.drawImage(elemPhone, 0, 0, phoneWidth * videoScale, phoneHeight * videoScale);
+        context.restore();
+
+        context.fillStyle = 'white';
+/*
+        // 위 삼각형
+        context.beginPath();
+        context.moveTo(canvasWidth * 0.5 - 1500, -triangleMove - 1700);
+        context.lineTo(canvasWidth * 0.5, canvasHeight * 0.5 - 150 - triangleMove);
+        context.lineTo(canvasWidth * 0.5 + 1500, -triangleMove - 1700);
+        context.lineTo(canvasWidth * 0.5 - 1500, -triangleMove - 1700);
+        context.fill();
+        context.closePath();
+
+        context.fillStyle = 'gray';
+        // 아래 삼각형
+        context.beginPath();
+        context.moveTo(canvasWidth * 0.5 - 1500, canvasHeight + triangleMove + 1700);
+        context.lineTo(canvasWidth * 0.5, canvasHeight * 0.5 + 150 + triangleMove);
+        context.lineTo(canvasWidth * 0.5 + 1500, canvasHeight + triangleMove + 1700);
+        context.lineTo(canvasWidth * 0.5 - 1500, canvasHeight + triangleMove + 1700);
+        context.fill();
+        context.closePath();
+        context.fillStyle = 'blue';
+
+        // 왼쪽 삼각형
+        context.beginPath();
+        context.moveTo(canvasWidth * 0.5 - 1700 - triangleMove, -1700);
+        context.lineTo(canvasWidth * 0.5 - 130 - triangleMove, canvasHeight * 0.5);
+        context.lineTo(canvasWidth * 0.5 - 1700 - triangleMove, canvasHeight + 1700);
+        context.lineTo(canvasWidth * 0.5 - 1700 - triangleMove, -1700);
+        context.fill();
+        context.closePath();
+*/
+        context.fillStyle = 'white';
+        // 오른쪽 삼각형
+        context.fillRect(canvasWidth * 0.5 + rectangleMove+150 , canvasHeight * 0.5 + rectangleMove*0.2-100, canvasWidth, 2000);
+        context.fillStyle = 'white';
+        context.fillRect(canvasWidth * 0.5 - rectangleMove-150 , canvasHeight * 0.5 + rectangleMove*0.2-100,-canvasWidth, 2000);
+        context.fillStyle = 'white';
+        context.fillRect(canvasWidth * 0.5  + rectangleMove*2 +500 , canvasHeight * 0.5 -400- rectangleMove-1,canvasWidth, 300+rectangleMove*1.5+1);
+        context.fillRect(canvasWidth * 0.5  - rectangleMove*2 -500 , canvasHeight * 0.5 -400- rectangleMove-1,-canvasWidth, 300+rectangleMove*1.5+1);
+/*
+        context.beginPath();
+        context.moveTo(canvasWidth * 0.5 + 1700 + triangleMove, -1700);
+        context.lineTo(canvasWidth * 0.5 + 130 + triangleMove, canvasHeight * 0.5);
+        context.lineTo(canvasWidth * 0.5 + 1700 + triangleMove, canvasHeight + 1700);
+        context.lineTo(canvasWidth * 0.5 + 1700 + triangleMove, -1700);
+        context.fill();
+        context.closePath();
+
+*/
+      //
+
+        context.fillStyle = 'white';
+        // 박스 상, 하
+        context.fillRect(0, canvasHeight * 0.5 - 2400 - rectangleMove, canvasWidth, 2000);
+        context.fillStyle = 'white';
+        context.fillRect(0, canvasHeight * 0.5 + 600 + rectangleMove, canvasWidth, 2000);
+
+    };
+
+    init();
+
+})();
+
+
+</script>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>
+$(function() {
+
+  $(window).scroll(function() {
+    var mass = Math.max(0, 0.1 * $(this).scrollTop()) + 'px';
+
+    $('#expandable').css({'font-size': mass, 'line-height': mass});
+  });
+});
+
+window.addEventListener("scroll", function (event) {
+    var scroll = this.scrollY;
+    //document.body.style.background='#'+(Math.random(scroll)*0xFFFFFF<<0).toString(16);
+    //document.body.style.background='#'+scroll*0xFFFFFF<<0).toString(16);
+    if(scroll>700){
+      document.body.style.background='white';
+
+    }else{
+      if(scroll%3==0){
+        document.body.style.background='#'+(Math.random(scroll)*0xFFFFFF<<0).toString(16);
+      }
+
+
+    }
+    var step =20;
+    var startp=1800;
+      if(scroll < startp) {
+       document.getElementById("me").src="me1.png";
+     } else if((scroll >= startp) &&(scroll < startp+step)) {
+       document.getElementById("me").src="me2.png";
+     }else if((scroll >= startp+step) &&(scroll < startp+step*2)) {
+       document.getElementById("me").src="me3.png";
+     }else if((scroll >= startp+step*2) &&(scroll < startp+step*3)) {
+       document.getElementById("me").src="me4.png";
+     }else if((scroll >= startp+step*3) &&(scroll < startp+step*4)) {
+       document.getElementById("me").src="me5.png";
+     }else if((scroll >= startp+step*4) &&(scroll < startp+step*5)) {
+       document.getElementById("me").src="me6.png";
+     }else if((scroll >= startp+step*5) &&(scroll < startp+step*6)) {
+       document.getElementById("me").src="me7.png";
+     }else if((scroll >= startp+step*6) &&(scroll < startp+step*7)) {
+       document.getElementById("me").src="me8.png";
+     }else if((scroll >= startp+step*7) &&(scroll < startp+step*8)) {
+       document.getElementById("me").src="me9.png";
+     }else if((scroll >= startp+step*8) &&(scroll < startp+step*9)) {
+       document.getElementById("me").src="me10.png";
+     }else if((scroll >= startp+step*9) &&(scroll < startp+step*10)) {
+       document.getElementById("me").src="me11.png";
+     }
+
+    console.log(scroll)
+});
+
+</script>
+
+<script>
+  ScrollReveal().reveal('.headline');
+  ScrollReveal().reveal('.tagline', { delay: 500 });
+  ScrollReveal().reveal('.punchline', { delay: 2000 });
+</script>
+<script>
+var myColor = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
+document.write('\
+    <style>\
+        body{\
+            background-color: '+myColor+';\
+        }\
+    </style>\
+');
+
+</script>
+
+
+</body></html>

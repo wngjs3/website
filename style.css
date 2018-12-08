@@ -1,0 +1,53 @@
+
+  body{
+    margin:0;
+    background: linear-gradient(to bottom, #eee, rgba(222,112,6,0.2), #de7006);
+  }
+  a {
+
+    text-decoration: none;
+  }
+  .saw{
+    color:gray;
+  }
+  #active{
+    color:red;
+  }
+  /*순서대로 작업됨 id가 더 강력함 아이디 클래스 태그순*/
+  h1{
+
+    font-size:60px;
+    text-align: center;
+    border-bottom:1px solid gray;
+    margin:0;
+    padding:30px;
+
+
+  }
+  ol{
+    border-right:1px solid gray;
+    width:100px;
+    margin:0;
+    padding:20px;
+  }
+  #grid{
+    display: grid;
+    grid-template-columns: 150px 1fr;
+  }
+  #article{
+    padding-left:25px;
+  }
+  #gird ol{
+    padding-left:33px;
+  }
+@media(max-width:800px){
+  #grid{
+    display: block;
+  }
+  ol{
+    border-right:none;
+  }
+  h1{
+    border-bottom:none;
+  }
+}

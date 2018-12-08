@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html >
+  <head>
+
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+      * { box-sizing: border-box }
+
+body {
+  font-family: 'Coming Soon', cursive;
+  transition: background 1s ease;
+   background: #3498db;
+}
+
+p {
+  color: #ecf0f1;
+  font-size: 2em;
+  text-align: center;
+
+}
+
+span {
+  clear: both;
+  font-size: .7em;
+  color: #bdc3c7;
+}
+
+a {
+  color: #c0392b;
+  text-decoration: none;
+}
+
+.slide {
+
+  .inside {
+    display: table;
+    height: 100%;
+    width: 100%;
+    padding: 0 3em;
+
+    p {
+      display: table-cell;
+      width: 100%;
+      clear: both;
+      vertical-align: middle;
+      text-align: center;
+    }
+  }
+}
+    </style>
+  </head>
+
+
+  <body>
+    <div class="main-wrapper">
+
+  <div class="slide slide-one" data-background="#3498db">
+    <div class="inside">
+    <p>I Wanted to create a really simple pen</p>
+    </div>
+  </div>
+  <div class="slide slide-two" data-background="#27ae60">
+    <div class="inside">
+      <p>A pen that uses some awesome colors <br /><span>awesome <a href="http://flatuicolors.com/" target="_blank">like these</a></span></p>
+    </div>
+  </div>
+  <div class="slide slide-three" data-background="#e74c3c">
+    <div class="inside">
+      <p>And that made you scroll</p>
+    </div>
+  </div>
+  <div class="slide slide-four" data-background="#e67e22">
+    <div class="inside">
+      <p>Mission Accomplished</p>
+    </div>
+  </div>
+  <div class="slide slide-five" data-background="#9b59b6">
+    <div class="inside">
+      <p>Have an awesome day</p>
+    </div>
+  </div>
+
+  <div class="slide slide-five" data-background="#34495e">
+    <div class="inside">
+      <p>This was built a long time ago so I made a better version <a href="https://codepen.io/Funsella/pen/3271d716c5c6b67c18af6f4ecf9295af/">better version</a> </p>
+    </div>
+  </div>
+
+</div>
+  </body>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script>
+    /**
+   * This was built using the scrollie jQuery Plugin
+   * https://github.com/Funsella/jquery-scrollie
+   */
+
+
+  $( window ).ready(function() {
+
+      var wHeight = $(window).height();
+
+      $('.slide')
+        .height(wHeight)
+        .scrollie({
+          scrollOffset : -50,
+          scrollingInView : function(elem) {
+
+            var bgColor = elem.data('background');
+
+            $('body').css('background-color', bgColor);
+
+          }
+        });
+
+    });
+  </script>
+</html>
